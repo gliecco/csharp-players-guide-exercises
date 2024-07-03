@@ -123,7 +123,7 @@ internal class Program
                 continue; 
             }
 
-            //this is for debugging
+            // this is for debugging
             // Console.WriteLine($"Player 2 entered: {playerTwoRange}, manticore distance is: {manticoreDistance}");
 
             return playerTwoRange; 
