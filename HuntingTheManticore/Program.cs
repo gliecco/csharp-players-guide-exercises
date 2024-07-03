@@ -110,13 +110,24 @@ internal class Program
     // method to prompt player two for their cannon range input
     static int GetPlayerTwoInput()
     {
-        Console.WriteLine("player 2, it is your turn.");
-        Console.WriteLine("enter the desired cannon range: ");
-        int playerTwoRange = Convert.ToInt32(Console.ReadLine());
-        
-        // this is for debugging
-        //Console.WriteLine($"player 2 entered: {playerTwoRange}, manticore distance is: {manticoreDistance}");
-        
-        return playerTwoRange;
+        Console.WriteLine("Player 2, it's your turn.");
+
+        while (true)
+        {
+            Console.WriteLine("Enter the desired cannon range: ");
+            int playerTwoRange = Convert.ToInt32(Console.ReadLine());
+ 
+            if (playerTwoRange < 0 || playerTwoRange > 100)
+            {
+                Console.WriteLine("The number must be between 0 and 100!");
+                continue; 
+            }
+
+            //this is for debugging
+            // Console.WriteLine($"Player 2 entered: {playerTwoRange}, manticore distance is: {manticoreDistance}");
+
+            return playerTwoRange; 
+        }
     }
+
 }
