@@ -3,7 +3,6 @@
 internal class Program
 {
     // variables to store the manticore distance, city hp, manticore hp, and round number
-    private static int manticoreDistance;
     private static int cityHP = 15;
     private static int manticoreHP = 10;
     private static int round = 1;
@@ -43,20 +42,13 @@ internal class Program
     {
         while (cityHP > 0 && manticoreHP > 0)
         {
-            Console.WriteLine("-----------------------------------------------------------");
-            // display the status of the game
-            Console.WriteLine($"status: round: {round} | city hp: {cityHP}/15 | manticore hp: {manticoreHP}/10");
+            DisplayStatus();
             int expectedDamage = CalculateDamage(round);
-            // display the expected damage for the current round
             Console.WriteLine($"the cannon is expected to deal {expectedDamage} damage this round.");
             Console.WriteLine("-----------------------------------------------------------");
 
-            // prompt player two for their cannon range input
-            Console.WriteLine("player 2, it is your turn.");
-            Console.WriteLine("enter the desired cannon range: ");
-            int playerTwoRange = Convert.ToInt32(Console.ReadLine());
-
-            Console.WriteLine($"player 2 entered: {playerTwoRange}, manticore distance is: {manticoreDistance}");
+           
+            int playerTwoRange = GetPlayerTwoInput();
 
             // check if the player overshot, undershot, or hit the target
             if (playerTwoRange > manticoreDistance)
@@ -88,22 +80,43 @@ internal class Program
                 Console.WriteLine("the manticore has been destroyed! the city of consolas is safe.");
             }
 
-            // method to calculate the damage based on the current round
-            static int CalculateDamage(int round)
-            {
-                if (round % 3 == 0 && round % 5 == 0)
-                {
-                    return 10; // fire-electric blast
-                }
-                else if (round % 3 == 0 || round % 5 == 0)
-                {
-                    return 3; // fire blast or electric blast
-                }
-                else
-                {
-                    return 1; // regular damage
-                }
-            }
         }
+    }
+
+    // method to display the status of the game
+    static void DisplayStatus() 
+    {   
+         Console.WriteLine("-----------------------------------------------------------");
+         Console.WriteLine($"status: round: {round} | city hp: {cityHP}/15 | manticore hp: {manticoreHP}/10");
+    }
+            
+    // method to calculate the damage based on the current round
+    static int CalculateDamage(int round)
+    {
+        if (round % 3 == 0 && round % 5 == 0)
+            {
+                return 10; // fire-electric blast
+            }
+        else if (round % 3 == 0 || round % 5 == 0)
+            {
+                return 3; // fire blast or electric blast
+            }
+        else
+            {
+                return 1; // regular damage
+            }
+    }
+
+    // method to prompt player two for their cannon range input
+    static int GetPlayerTwoInput()
+    {
+        Console.WriteLine("player 2, it is your turn.");
+        Console.WriteLine("enter the desired cannon range: ");
+        int playerTwoRange = Convert.ToInt32(Console.ReadLine());
+        
+        // this is for debugging
+        //Console.WriteLine($"player 2 entered: {playerTwoRange}, manticore distance is: {manticoreDistance}");
+        
+        return playerTwoRange;
     }
 }
