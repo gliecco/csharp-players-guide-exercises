@@ -10,8 +10,9 @@ internal class Program
     private static void Main(string[] args)
     {
         int manticoreDistance = GetPlayerOneInput();
-        Console.WriteLine($"player 1 has set the distance to: {manticoreDistance}");
         GameLoop(manticoreDistance);
+        Console.WriteLine("Press any key to exit the game...");
+        Console.ReadKey(true);
     }
 
     // method to get the manticore distance from player one
@@ -20,8 +21,6 @@ internal class Program
         while (true)
         {
             Console.WriteLine("player 1, how far away from the city do you want to station the manticore?");
-            Console.Clear();
-
             int manticoreDistance = Convert.ToInt32(Console.ReadLine());
             Console.Clear();
 
@@ -51,25 +50,23 @@ internal class Program
             // check if the player overshot, undershot, or hit the target
             if (playerTwoRange > manticoreDistance)
             {
-                Console.WriteLine("you overshot the target!");
+                Console.WriteLine("you overshot the target!\n");
                 cityHP--;
                 round++;
             }
             else if (playerTwoRange < manticoreDistance)
             {
-                Console.WriteLine("you undershot the target!");
+                Console.WriteLine("you undershot the target!\n");
                 cityHP--;
                 round++;
             }
             else if (playerTwoRange == manticoreDistance)
             {
-                Console.WriteLine("it's a hit!!!");
+                Console.WriteLine("it's a hit!!!\n");
                 manticoreHP -= CalculateDamage(round);
                 round++;
             }
-
             EndGame();
-
         }
     }
 
@@ -100,16 +97,17 @@ internal class Program
     // method to prompt player two for their cannon range input
     static int GetPlayerTwoInput()
     {
-        Console.WriteLine("Player 2, it's your turn.");
+        Console.WriteLine("player 2, it's your turn.");
 
         while (true)
         {
-            Console.WriteLine("Enter the desired cannon range: ");
+            Console.WriteLine("enter the desired cannon range: ");
             int playerTwoRange = Convert.ToInt32(Console.ReadLine());
+            Console.Clear();
 
             if (playerTwoRange < 0 || playerTwoRange > 100)
             {
-                Console.WriteLine("The number must be between 0 and 100!");
+                Console.WriteLine("the number must be between 0 and 100!");
                 continue;
             }
 
@@ -122,11 +120,13 @@ internal class Program
     {
         if (cityHP <= 0)
         {
-            Console.WriteLine("the city of consolas has been destroyed! game over!");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("the city of consolas has been destroyed! game over!\n");
         }
         else if (manticoreHP <= 0)
         {
-            Console.WriteLine("the manticore has been destroyed! the city of consolas is safe.");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("the manticore has been destroyed! the city of consolas is safe.\n");
         }
     }
 
