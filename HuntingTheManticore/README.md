@@ -10,4 +10,4 @@ The game runs in a loop until either the Manticore’s or the city’s health re
 
 The second player guesses the target range and is informed whether they overshot (too far), fell short (not far enough), or hit the Manticore. If the guess is correct, the Manticore’s health is reduced by the calculated damage amount. If the Manticore survives the round, the city’s health is reduced by 1. The game advances to the next round.
 
-The game ends when either the Manticore’s or the city’s health reaches 0, at which point the outcome is displayed. To enhance the user experience, different colors are used for different types of messages.
+The game ends when either the Manticore’s or the city’s health reaches 0, at which point the outcome is displayed. 
