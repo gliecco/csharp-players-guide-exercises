@@ -117,7 +117,7 @@ internal class Program
         }
     }
 
-    // method to check if the game has ended
+    // method for the game's ending
     static void EndGame()
     {
         if (cityHP <= 0)
