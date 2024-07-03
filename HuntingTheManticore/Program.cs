@@ -26,7 +26,7 @@ internal class Program
             int manticoreDistance = Convert.ToInt32(Console.ReadLine());
             Console.Clear();
 
-            // validate the input to ensure it's between 0 and 100
+            // validate the input to make sure it's between 0 and 100
             if (manticoreDistance < 0 || manticoreDistance > 100)
             {
                 Console.WriteLine("the number must be between 0 and 100!");
