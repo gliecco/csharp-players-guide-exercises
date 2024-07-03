@@ -2,17 +2,15 @@
 
 internal class Program
 {
-    // variables to store the manticore distance, city hp, manticore hp, and round number
+    // variables to store the city hp, manticore hp, and round number
     private static int cityHP = 15;
     private static int manticoreHP = 10;
     private static int round = 1;
 
     private static void Main(string[] args)
     {
-        // get player one's input for the manticore distance
         int manticoreDistance = GetPlayerOneInput();
         Console.WriteLine($"player 1 has set the distance to: {manticoreDistance}");
-        // start the game loop with the given manticore distance
         GameLoop(manticoreDistance);
     }
 
@@ -22,17 +20,17 @@ internal class Program
         while (true)
         {
             Console.WriteLine("player 1, how far away from the city do you want to station the manticore?");
+            Console.Clear();
+
             int manticoreDistance = Convert.ToInt32(Console.ReadLine());
             Console.Clear();
 
-            // validate the input to make sure it's between 0 and 100
             if (manticoreDistance < 0 || manticoreDistance > 100)
             {
                 Console.WriteLine("the number must be between 0 and 100!");
                 continue;
             }
 
-            // return the valid manticore distance
             return manticoreDistance;
         }
     }
@@ -47,7 +45,7 @@ internal class Program
             Console.WriteLine($"the cannon is expected to deal {expectedDamage} damage this round.");
             Console.WriteLine("-----------------------------------------------------------");
 
-           
+
             int playerTwoRange = GetPlayerTwoInput();
 
             // check if the player overshot, undershot, or hit the target
@@ -70,41 +68,33 @@ internal class Program
                 round++;
             }
 
-            // check if the game has ended
-            if (cityHP <= 0)
-            {
-                Console.WriteLine("the city of consolas has been destroyed! game over!");
-            }
-            else if (manticoreHP <= 0)
-            {
-                Console.WriteLine("the manticore has been destroyed! the city of consolas is safe.");
-            }
+            EndGame();
 
         }
     }
 
     // method to display the status of the game
-    static void DisplayStatus() 
-    {   
-         Console.WriteLine("-----------------------------------------------------------");
-         Console.WriteLine($"status: round: {round} | city hp: {cityHP}/15 | manticore hp: {manticoreHP}/10");
+    static void DisplayStatus()
+    {
+        Console.WriteLine("-----------------------------------------------------------");
+        Console.WriteLine($"status: round: {round} | city hp: {cityHP}/15 | manticore hp: {manticoreHP}/10");
     }
-            
+
     // method to calculate the damage based on the current round
     static int CalculateDamage(int round)
     {
         if (round % 3 == 0 && round % 5 == 0)
-            {
-                return 10; // fire-electric blast
-            }
+        {
+            return 10; // fire-electric blast
+        }
         else if (round % 3 == 0 || round % 5 == 0)
-            {
-                return 3; // fire blast or electric blast
-            }
+        {
+            return 3; // fire blast or electric blast
+        }
         else
-            {
-                return 1; // regular damage
-            }
+        {
+            return 1; // regular damage
+        }
     }
 
     // method to prompt player two for their cannon range input
@@ -116,17 +106,27 @@ internal class Program
         {
             Console.WriteLine("Enter the desired cannon range: ");
             int playerTwoRange = Convert.ToInt32(Console.ReadLine());
- 
+
             if (playerTwoRange < 0 || playerTwoRange > 100)
             {
                 Console.WriteLine("The number must be between 0 and 100!");
-                continue; 
+                continue;
             }
 
-            // this is for debugging
-            // Console.WriteLine($"Player 2 entered: {playerTwoRange}, manticore distance is: {manticoreDistance}");
+            return playerTwoRange;
+        }
+    }
 
-            return playerTwoRange; 
+    // method to check if the game has ended
+    static void EndGame()
+    {
+        if (cityHP <= 0)
+        {
+            Console.WriteLine("the city of consolas has been destroyed! game over!");
+        }
+        else if (manticoreHP <= 0)
+        {
+            Console.WriteLine("the manticore has been destroyed! the city of consolas is safe.");
         }
     }
 
