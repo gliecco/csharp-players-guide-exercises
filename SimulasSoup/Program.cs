@@ -8,12 +8,6 @@ class Program
         Console.WriteLine($"a fresh {seasoning} {ingredient} {type}!");
     }
 
-    // enums for the different dish types, main ingredients and seasonings
-
-    enum DishType { soup, stew, gumbo }
-    enum MainIngredient { mushroom, chicken, carrots, potatoes }
-    enum Seasoning { spicy, salty, sweet }
-
     // method to get the user's seasoning
 
     static Seasoning GetUserSeasoning()
@@ -77,6 +71,7 @@ class Program
     }
 
     // method to get the user's final dish
+
     static (Seasoning, MainIngredient, DishType) GetDish()
     {
         Seasoning userSeasoning = GetUserSeasoning();
@@ -85,5 +80,10 @@ class Program
         return (userSeasoning, userIngredient, userType);
     }
 
-}
+    // enums for the different dish types, main ingredients and seasonings
 
+    enum DishType { soup, stew, gumbo }
+    enum MainIngredient { mushroom, chicken, carrots, potatoes }
+    enum Seasoning { spicy, salty, sweet }
+
+}
