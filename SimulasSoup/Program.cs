@@ -1,20 +1,16 @@
-﻿using Microsoft.VisualBasic;
-using System;
-using System.ComponentModel;
-using System.Runtime.Serialization;
-using System.Xml.Linq;
+﻿using System;
 
 class Program
 {
     static void Main(string[] args)
     {
-        (Seasoning seasoning, MainIngredient ingredient, Type type) FinalDish = GetDish();
-        Console.WriteLine($"a fresh {FinalDish.seasoning} {FinalDish.ingredient} {FinalDish.type}!");
+        (Seasoning seasoning, MainIngredient ingredient, DishType type) = GetDish();
+        Console.WriteLine($"a fresh {seasoning} {ingredient} {type}!");
     }
 
     // enums for the different dish types, main ingredients and seasonings
 
-    enum Type { soup, stew, gumbo }
+    enum DishType { soup, stew, gumbo }
     enum MainIngredient { mushroom, chicken, carrots, potatoes }
     enum Seasoning { spicy, salty, sweet }
 
@@ -27,6 +23,7 @@ class Program
         Console.WriteLine("2. Salty");
         Console.WriteLine("3. Sweet\n");
         int userSeasoning = Convert.ToInt32(Console.ReadLine());
+        Console.Clear();
 
         return userSeasoning switch
         {
@@ -47,6 +44,7 @@ class Program
         Console.WriteLine("3. Carrots");
         Console.WriteLine("4. Potatoes\n");
         int userIngredient = Convert.ToInt32(Console.ReadLine());
+        Console.Clear();
 
         return userIngredient switch
         {
@@ -60,29 +58,30 @@ class Program
 
     // method to get the user's dish type
 
-    static Type GetUserType()
+    static DishType GetUserType()
     {
         Console.WriteLine("\nChoose your type of recipe:");
         Console.WriteLine("1. Soup");
         Console.WriteLine("2. Stew");
         Console.WriteLine("3. Gumbo\n");
         int UserType = Convert.ToInt32(Console.ReadLine());
+        Console.Clear();
 
         return UserType switch
         {
-            1 => Type.soup,
-            2 => Type.stew,
-            3 => Type.gumbo,
+            1 => DishType.soup,
+            2 => DishType.stew,
+            3 => DishType.gumbo,
             _ => throw new ArgumentException("we're out of that one!")
         };
     }
 
     // method to get the user's final dish
-    static (Seasoning, MainIngredient, Type) GetDish()
+    static (Seasoning, MainIngredient, DishType) GetDish()
     {
         Seasoning userSeasoning = GetUserSeasoning();
         MainIngredient userIngredient = GetUserIngredient();
-        Type userType = GetUserType();
+        DishType userType = GetUserType();
         return (userSeasoning, userIngredient, userType);
     }
 
