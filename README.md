@@ -1,1 +1,1 @@
-Some of my solutions to the C# Player's Guide challenges. The code may change as I work through it.
+My solutions to some of the C# Player's Guide challenges. 
